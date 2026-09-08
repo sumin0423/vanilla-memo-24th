@@ -100,6 +100,8 @@ const sampleMemos = [
 ];
 
 let memos = sampleMemos.map((memo) => ({ ...memo }));
+let searchQuery = '';
+let selectedTag = 'all';
 
 const tagLabels = {
   daily: 'Daily',
@@ -114,6 +116,9 @@ const memoElements = {
   memoList: document.querySelector('#memo-list'),
   emptyState: document.querySelector('#empty-state'),
   noResults: document.querySelector('#no-results'),
+  searchForm: document.querySelector('#search-form'),
+  searchInput: document.querySelector('#search-input'),
+  tagSelect: document.querySelector('#tag-select'),
 };
 
 function createMemoCard(memo) {
@@ -181,7 +186,7 @@ function createMemoCard(memo) {
 }
 
 function renderMemos() {
-  const visibleMemos = memos;
+  const visibleMemos = getVisibleMemos();
   const pinnedMemos = visibleMemos.filter((memo) => memo.isPinned);
   const regularMemos = visibleMemos.filter((memo) => !memo.isPinned);
 
@@ -200,9 +205,35 @@ function renderMemos() {
   memoElements.emptyState.hidden = memos.length > 0;
   memoElements.noResults.hidden = memos.length === 0 || visibleMemos.length > 0;
   document.body.classList.toggle('has-memos', memos.length > 0);
+  memoElements.tagSelect.dataset.tag = selectedTag;
+}
+
+function getVisibleMemos() {
+  const normalizedQuery = searchQuery.trim().toLowerCase();
+  return memos.filter((memo) => {
+    const matchesTag = selectedTag === 'all' || memo.tag === selectedTag;
+    const memoText = `${memo.title} ${memo.content}`.toLowerCase();
+    const matchesQuery = memoText.includes(normalizedQuery);
+    return matchesTag && matchesQuery;
+  });
 }
 
 
 
+memoElements.searchForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+  searchQuery = memoElements.searchInput.value;
+  renderMemos();
+});
+
+memoElements.searchInput.addEventListener('input', (event) => {
+  searchQuery = event.target.value;
+  renderMemos();
+});
+
+memoElements.tagSelect.addEventListener('change', (event) => {
+  selectedTag = event.target.value;
+  renderMemos();
+});
 
 renderMemos();
