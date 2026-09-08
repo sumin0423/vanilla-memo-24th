@@ -147,7 +147,6 @@ function createMemoCard(memo) {
   pinButton.type = 'button';
   pinButton.className = 'pin-button';
   pinButton.textContent = '★';
-  pinButton.disabled = true;
   if (isPinned) {
     pinButton.setAttribute('aria-label', `${title} 고정 해제`);
   } else {
@@ -179,7 +178,15 @@ function createMemoCard(memo) {
   article.appendChild(footer);
   item.appendChild(article);
 
-
+  pinButton.addEventListener('click', (event) => {
+    event.stopPropagation();
+    togglePin(id);
+    const updatedCard = document.querySelector(`[data-id="${id}"]`);
+    if (updatedCard) {
+      const updatedPinButton = updatedCard.querySelector('.pin-button');
+      updatedPinButton.focus();
+    }
+  });
 
 
   return item;
@@ -218,6 +225,15 @@ function getVisibleMemos() {
   });
 }
 
+function togglePin(memoId) {
+  memos = memos.map((memo) => {
+    if (memo.id === memoId) {
+      return { ...memo, isPinned: !memo.isPinned };
+    }
+    return memo;
+  });
+  renderMemos();
+}
 
 
 memoElements.searchForm.addEventListener('submit', (event) => {
