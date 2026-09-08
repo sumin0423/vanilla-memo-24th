@@ -152,7 +152,7 @@ function createMemoCard(memo) {
   const pinButton = document.createElement('button');
   pinButton.type = 'button';
   pinButton.className = 'pin-button';
-  pinButton.textContent = '★';
+
   if (isPinned) {
     pinButton.setAttribute('aria-label', `${title} 고정 해제`);
   } else {
@@ -221,6 +221,7 @@ function renderMemos() {
   memoElements.noResults.hidden = memos.length === 0 || visibleMemos.length > 0;
   document.body.classList.toggle('has-memos', memos.length > 0);
   memoElements.tagSelect.dataset.tag = selectedTag;
+  memoElements.tagSelect.parentElement.dataset.tag = selectedTag;
 }
 
 function getVisibleMemos() {
