@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vanilla Memo</title>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <h1 class="visually-hidden">Vanilla Memo</h1>
+      <form role="search" id="search-form">
+        <label class="visually-hidden" for="tag-select">태그 선택</label>
+        <div class="tag-control">
+          <select id="tag-select" name="tag" disabled>
+            <option value="all">태그 선택</option>
+            <option value="daily">Daily</option>
+            <option value="work">Work</option>
+            <option value="others">Others</option>
+          </select>
+        </div>
+
+        <label class="visually-hidden" for="search-input">메모 검색</label>
+        <input id="search-input" name="query" type="search" disabled placeholder="원하는 메모를 검색하세요" />
+        <button id="search-button" type="submit" class="search-button" aria-label="검색" disabled><span class="search-icon" aria-hidden="true"></span></button>
+      </form>
+      <button id="create-button" type="button" class="round-button" aria-label="새 메모" disabled><span class="plus-icon" aria-hidden="true"></span></button>
+      <button id="profile-button" type="button" class="round-button" aria-label="사용자" disabled><span class="user-icon" aria-hidden="true"></span></button>
+    </header>
+
+    <main>
+      <section class="memo-board" aria-labelledby="memo-list-heading">
+        <h2 class="visually-hidden" id="memo-list-heading">메모 목록</h2>
+
+        <section id="pinned-section" aria-labelledby="pinned-heading" hidden>
+          <h3 class="visually-hidden" id="pinned-heading">고정된 메모</h3>
+          <ul id="pinned-list" class="memo-list"></ul>
+        </section>
+        <section id="regular-section" aria-labelledby="regular-heading" hidden>
+          <h3 class="visually-hidden" id="regular-heading">일반 메모</h3>
+          <ul id="memo-list" class="memo-list"></ul>
+        </section>
+
+        <div id="empty-state" class="empty-state">
+          <svg class="empty-border" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+            <rect x="1" y="1" rx="27" />
+          </svg>
+          <span class="empty-icon" aria-hidden="true"><span class="plus-icon"></span></span>
+          <p>새로운 메모를 작성해보세요!</p>
+        </div>
+        <div id="no-results" class="empty-state" role="status" hidden>
+          <span class="empty-icon" aria-hidden="true"><span class="search-icon"></span></span>
+          <p>검색 결과가 없습니다</p>
+          <p>다른 검색어로 다시 시도해보세요</p>
+        </div>
+      </section>
+    </main>
+
+  </body>
+</html>
