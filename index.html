@@ -23,10 +23,10 @@
 
         <label class="visually-hidden" for="search-input">메모 검색</label>
         <input id="search-input" name="query" type="search" placeholder="원하는 메모를 검색하세요" />
-        <button id="search-button" type="submit" class="search-button" aria-label="검색"><span class="search-icon" aria-hidden="true"></span></button>
+        <button id="search-button" type="submit" class="search-button" aria-label="검색"><img src="./assets/icons/search.svg" width="39" height="39" alt="" /></button>
       </form>
-      <button id="create-button" type="button" class="round-button" aria-label="새 메모" disabled><span class="plus-icon" aria-hidden="true"></span></button>
-      <button id="profile-button" type="button" class="round-button" aria-label="사용자" disabled><span class="user-icon" aria-hidden="true"></span></button>
+      <button id="create-button" type="button" class="round-button" aria-label="새 메모" disabled><img src="./assets/icons/plus.svg" width="28" height="28" alt="" /></button>
+      <button id="profile-button" type="button" class="round-button" aria-label="사용자" disabled><img src="./assets/icons/user.svg" width="32" height="32" alt="" /></button>
     </header>
 
     <main>
@@ -46,7 +46,7 @@
           <svg class="empty-border" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
             <rect x="1" y="1" rx="27" />
           </svg>
-          <span class="empty-icon" aria-hidden="true"><span class="plus-icon"></span></span>
+          <span class="empty-icon" aria-hidden="true"><img src="./assets/icons/emptyPlus.svg" width="39" height="39" alt="" /></span>
           <p>새로운 메모를 작성해보세요!</p>
         </div>
         <div id="no-results" class="empty-state" role="status" hidden>
