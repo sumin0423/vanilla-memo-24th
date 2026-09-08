@@ -461,3 +461,138 @@ button:not(:disabled) {
   color: #657c94;
 }
 
+#memo-dialog {
+  width: 560px;
+  max-width: calc(100vw - 48px);
+  max-height: calc(100vh - 48px);
+  padding: 40px 44px;
+  border: 0;
+  border-radius: 24px;
+  color: var(--color-surface);
+  box-shadow: 0 4px 6px #001b5433;
+}
+
+#memo-dialog::backdrop {
+  background: #001b5480;
+}
+
+#memo-content {
+  display: flex;
+  flex-direction: column;
+  min-height: 480px;
+}
+
+.memo-detail-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+#memo-detail-heading {
+  margin: 0;
+  overflow-wrap: anywhere;
+  font-size: 30px;
+  line-height: 1.4;
+}
+
+.dialog-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.memo-detail-meta {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-top: 28px;
+  margin-bottom: 32px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+#memo-detail-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  padding: 4px 20px 4px 12px;
+  border-radius: 24px;
+  background: var(--color-background);
+  color: var(--color-ink);
+}
+
+#memo-detail-date {
+  display: flex;
+  align-items: center;
+  min-height: 52px;
+  padding-left: 24px;
+  border-left: 3px solid var(--color-surface);
+}
+
+#memo-detail-body {
+  margin: 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+#memo-detail-heading:focus {
+  outline: none;
+}
+
+#memo-detail-tag::before {
+  content: "";
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.memo-card--daily #memo-detail-tag {
+  color: #528bff;
+}
+
+.memo-card--work #memo-detail-tag {
+  color: var(--color-work);
+}
+
+.memo-card--others #memo-detail-tag {
+  color: #657c94;
+}
+
+.memo-detail-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: auto;
+  padding-top: 32px;
+}
+
+.memo-detail-actions button {
+  width: 28px;
+  height: 28px;
+}
+
+.memo-detail-actions svg,
+.dialog-close svg {
+  display: block;
+  width: 28px;
+  height: 28px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.dialog-close svg {
+  stroke-width: 5;
+}

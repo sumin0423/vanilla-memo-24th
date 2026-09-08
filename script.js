@@ -102,6 +102,7 @@ const sampleMemos = [
 let memos = sampleMemos.map((memo) => ({ ...memo }));
 let searchQuery = '';
 let selectedTag = 'all';
+let lastOpenedMemoId = null;
 
 const tagLabels = {
   daily: 'Daily',
@@ -119,6 +120,11 @@ const memoElements = {
   searchForm: document.querySelector('#search-form'),
   searchInput: document.querySelector('#search-input'),
   tagSelect: document.querySelector('#tag-select'),
+  dialog: document.querySelector('#memo-dialog'),
+  detailHeading: document.querySelector('#memo-detail-heading'),
+  detailTag: document.querySelector('#memo-detail-tag'),
+  detailDate: document.querySelector('#memo-detail-date'),
+  detailBody: document.querySelector('#memo-detail-body'),
 };
 
 function createMemoCard(memo) {
@@ -140,7 +146,7 @@ function createMemoCard(memo) {
   detailButton.type = 'button';
   detailButton.className = 'memo-open-button';
   detailButton.textContent = title;
-  detailButton.disabled = true;
+  detailButton.setAttribute('aria-haspopup', 'dialog');
   heading.appendChild(detailButton);
 
   const pinButton = document.createElement('button');
@@ -187,7 +193,9 @@ function createMemoCard(memo) {
       updatedPinButton.focus();
     }
   });
-
+  item.addEventListener('click', () => {
+    openMemo(id);
+  });
 
   return item;
 }
@@ -235,6 +243,21 @@ function togglePin(memoId) {
   renderMemos();
 }
 
+function openMemo(memoId) {
+  const memo = memos.find((item) => item.id === memoId);
+  if (!memo) {
+    return;
+  }
+
+  lastOpenedMemoId = memoId;
+  memoElements.detailHeading.textContent = memo.title;
+  memoElements.detailTag.textContent = tagLabels[memo.tag];
+  memoElements.detailDate.dateTime = memo.date;
+  memoElements.detailDate.textContent = memo.date.replaceAll('-', '.');
+  memoElements.detailBody.textContent = memo.content;
+  memoElements.dialog.className = `memo-card--${memo.tag}`;
+  memoElements.dialog.showModal();
+}
 
 memoElements.searchForm.addEventListener('submit', (event) => {
   event.preventDefault();
@@ -250,6 +273,14 @@ memoElements.searchInput.addEventListener('input', (event) => {
 memoElements.tagSelect.addEventListener('change', (event) => {
   selectedTag = event.target.value;
   renderMemos();
+});
+
+memoElements.dialog.addEventListener('close', () => {
+  const card = document.querySelector(`[data-id="${lastOpenedMemoId}"]`);
+  if (card) {
+    const detailButton = card.querySelector('.memo-open-button');
+    detailButton.focus();
+  }
 });
 
 renderMemos();

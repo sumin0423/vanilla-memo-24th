@@ -57,5 +57,30 @@
       </section>
     </main>
 
+    <dialog id="memo-dialog" aria-labelledby="memo-detail-heading">
+      <article id="memo-content">
+        <header class="memo-detail-header">
+          <h2 id="memo-detail-heading" tabindex="-1" autofocus>메모 제목</h2>
+          <form method="dialog">
+            <button type="submit" class="dialog-close" aria-label="닫기">
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m6 6 12 12M18 6 6 18" /></svg>
+            </button>
+          </form>
+        </header>
+        <div class="memo-detail-meta">
+          <span id="memo-detail-tag"></span>
+          <time id="memo-detail-date"></time>
+        </div>
+        <p id="memo-detail-body"></p>
+        <footer class="memo-detail-actions">
+          <button type="button" aria-label="메모 수정" disabled>
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="m14 5 5 5M3 21l5-1L21 7a2.1 2.1 0 0 0-5-5L3 16zM14 21h8" /></svg>
+          </button>
+          <button type="button" aria-label="메모 삭제" disabled>
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 6h18M9 6V3h6v3M6 6l1 15h10l1-15M10 10v7M14 10v7" /></svg>
+          </button>
+        </footer>
+      </article>
+    </dialog>
   </body>
 </html>
