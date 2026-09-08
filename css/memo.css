@@ -1,227 +1,3 @@
-@font-face {
-  font-family: 'Pretendard';
-  src: url('./assets/fonts/Pretendard-Regular.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Pretendard';
-  src: url('./assets/fonts/Pretendard-Bold.woff2') format('woff2');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-:root {
-  --color-background: #e4edff;
-  --color-surface: #fafafa;
-  --color-ink: #001b54;
-  --color-muted: #a6bad2;
-  --color-accent-soft: #a8c7ff;
-  --color-daily: #7ba3ff;
-  --color-work: #0039a6;
-  --color-others: #a6b9ca;
-  --color-pinned: #ff5964;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-[hidden] {
-  display: none !important;
-}
-
-body {
-  margin: 0;
-  background: var(--color-background);
-  color: var(--color-ink);
-  font-family: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
-  line-height: 1.5;
-}
-
-button,
-input,
-select {
-  font: inherit;
-  color: inherit;
-}
-
-button {
-  padding: 0;
-  border: 0;
-  background: transparent;
-}
-
-button:disabled {
-  opacity: 1;
-  cursor: default;
-}
-
-:focus-visible {
-  outline: 3px solid var(--color-ink);
-  outline-offset: 4px;
-}
-
-.visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip-path: inset(50%);
-  white-space: nowrap;
-  border: 0;
-}
-
-.app-header,
-main {
-  width: 83.333333%;
-  max-width: 1200px;
-  margin-inline: auto;
-}
-
-.app-header {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  margin-top: 72px;
-}
-
-#search-form {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex: 1;
-  min-width: 0;
-  height: 80px;
-  padding: 16px;
-  border-radius: 28px;
-  background: var(--color-surface);
-}
-
-.tag-control {
-  position: relative;
-  flex-shrink: 0;
-}
-
-.tag-control::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  right: 16px;
-  transform: translateY(-50%);
-  width: 13px;
-  height: 16px;
-  background: url("./assets/icons/play.svg") center / contain no-repeat;
-  pointer-events: none;
-}
-
-#tag-select {
-  appearance: none;
-  width: 116px;
-  height: 36px;
-  padding: 0 36px 0 16px;
-  border: 0;
-  border-radius: 20px;
-  background: var(--color-background);
-  font-size: 14px;
-  font-weight: 700;
-  cursor: pointer;
-}
-
-#search-input {
-  flex: 1;
-  min-width: 0;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  font-size: 14px;
-}
-
-#search-input::placeholder {
-  color: var(--color-muted);
-}
-
-.search-button,
-.round-button,
-.empty-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-}
-
-#empty-state {
-  position: relative;
-  border-color: transparent;
-}
-
-.empty-border {
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  width: calc(100% + 4px);
-  height: calc(100% + 4px);
-  pointer-events: none;
-}
-
-.empty-border rect {
-  width: calc(100% - 2px);
-  height: calc(100% - 2px);
-  fill: none;
-  stroke: var(--color-accent-soft);
-  stroke-width: 1.5px;
-  stroke-dasharray: 10 6;
-}
-
-.search-button {
-  width: 48px;
-  height: 48px;
-}
-
-.round-button {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  background: var(--color-surface);
-}
-
-main {
-  margin-top: 76px;
-  margin-bottom: 86px;
-}
-
-.empty-state {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 28px;
-  min-height: 500px;
-  height: calc(100vh - 314px);
-  border: 2px dashed var(--color-accent-soft);
-  border-radius: 28px;
-  color: var(--color-accent-soft);
-}
-
-.empty-icon {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  background: var(--color-accent-soft);
-  color: var(--color-background);
-}
-
-.empty-state p {
-  margin: 0;
-  font-size: 22px;
-  font-weight: 700;
-}
-
 .memo-list {
   margin: 0;
   padding: 0;
@@ -296,11 +72,11 @@ main {
   width: 32px;
   height: 32px;
   color: var(--color-background);
-  background: url("./assets/icons/star.svg") center / 23px 22px no-repeat;
+  background: url("../assets/icons/star.svg") center / 23px 22px no-repeat;
 }
 
 .pin-button.is-pinned {
-  background-image: url("./assets/icons/starPinned.svg");
+  background-image: url("../assets/icons/starPinned.svg");
 }
 
 .memo-card-preview {
@@ -448,7 +224,7 @@ button:not(:disabled) {
   align-items: center;
   min-height: 52px;
   padding-left: 24px;
-  background: url("./assets/icons/divider.svg") left center / 3px 52px no-repeat;
+  background: url("../assets/icons/divider.svg") left center / 3px 52px no-repeat;
 }
 
 #memo-detail-body {
@@ -500,7 +276,7 @@ button:not(:disabled) {
 
 .tag-control[data-tag="daily"]::after,
 .memo-card--daily #memo-detail-tag::before {
-  background-image: url("./assets/icons/daily.svg");
+  background-image: url("../assets/icons/daily.svg");
 }
 
 #tag-select[data-tag="daily"],
@@ -510,7 +286,7 @@ button:not(:disabled) {
 
 .tag-control[data-tag="work"]::after,
 .memo-card--work #memo-detail-tag::before {
-  background-image: url("./assets/icons/work.svg");
+  background-image: url("../assets/icons/work.svg");
 }
 
 #tag-select[data-tag="work"],
@@ -520,7 +296,7 @@ button:not(:disabled) {
 
 .tag-control[data-tag="others"]::after,
 .memo-card--others #memo-detail-tag::before {
-  background-image: url("./assets/icons/others.svg");
+  background-image: url("../assets/icons/others.svg");
 }
 
 #tag-select[data-tag="others"],
