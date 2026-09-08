@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vanilla Memo</title>
+    <link rel="stylesheet" href="./css/typography.css" />
+    <link rel="stylesheet" href="./css/tokens.css" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/memo.css" />
+    <script src="./js/mockData.js" defer></script>
+    <script src="./js/storage.js" defer></script>
+    <script src="./js/memo.js" defer></script>
+    <script src="./js/modal.js" defer></script>
+    <script src="./js/main.js" defer></script>
+  </head>
+  <body>
+    <header class="app-header">
+      <h1 class="visually-hidden">Vanilla Memo</h1>
+      <form role="search" id="search-form">
+        <label class="visually-hidden" for="tag-select">태그 선택</label>
+        <div class="tag-control">
+          <select id="tag-select" name="tag">
+            <option value="all">태그 선택</option>
+            <option value="daily">Daily</option>
+            <option value="work">Work</option>
+            <option value="others">Others</option>
+          </select>
+        </div>
+
+        <label class="visually-hidden" for="search-input">메모 검색</label>
+        <input id="search-input" name="query" type="search" placeholder="원하는 메모를 검색하세요" />
+        <button id="search-button" type="submit" class="search-button" aria-label="검색"><img src="./assets/icons/search.svg" width="39" height="39" alt="" /></button>
+      </form>
+      <button id="create-button" type="button" class="round-button" aria-label="새 메모" disabled><img src="./assets/icons/plus.svg" width="28" height="28" alt="" /></button>
+      <button id="profile-button" type="button" class="round-button" aria-label="사용자" disabled><img src="./assets/icons/user.svg" width="32" height="32" alt="" /></button>
+    </header>
+
+    <main>
+      <section class="memo-board" aria-labelledby="memo-list-heading">
+        <h2 class="visually-hidden" id="memo-list-heading">메모 목록</h2>
+
+        <section id="pinned-section" aria-labelledby="pinned-heading" hidden>
+          <h3 class="visually-hidden" id="pinned-heading">고정된 메모</h3>
+          <ul id="pinned-list" class="memo-list"></ul>
+        </section>
+        <section id="regular-section" aria-labelledby="regular-heading" hidden>
+          <h3 class="visually-hidden" id="regular-heading">일반 메모</h3>
+          <ul id="memo-list" class="memo-list"></ul>
+        </section>
+
+        <div id="empty-state" class="empty-state">
+          <svg class="empty-border" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+            <rect x="1" y="1" rx="27" />
+          </svg>
+          <span class="empty-icon" aria-hidden="true"><img src="./assets/icons/emptyPlus.svg" width="39" height="39" alt="" /></span>
+          <p>새로운 메모를 작성해보세요!</p>
+        </div>
+        <div id="no-results" class="empty-state" role="status" hidden>
+          <span class="empty-icon" aria-hidden="true"><img src="./assets/icons/searchLight.svg" width="39" height="39" alt="" /></span>
+          <p>검색 결과가 없습니다</p>
+          <p>다른 검색어로 다시 시도해보세요</p>
+        </div>
+      </section>
+    </main>
+
+    <dialog id="memo-dialog" aria-labelledby="memo-detail-heading">
+      <article id="memo-content">
+        <header class="memo-detail-header">
+          <h2 id="memo-detail-heading" tabindex="-1" autofocus>메모 제목</h2>
+          <label class="visually-hidden" for="memo-title-input">메모 제목 수정</label>
+          <input id="memo-title-input" class="memo-title-input" type="text" hidden />
+          <form method="dialog">
+            <button type="submit" class="dialog-close" aria-label="닫기">
+              <img src="./assets/icons/close.svg" width="32" height="32" alt="" />
+            </button>
+          </form>
+        </header>
+        <div id="memo-detail-view" class="memo-detail-meta">
+          <span id="memo-detail-tag"></span>
+          <time id="memo-detail-date"></time>
+        </div>
+        <div id="memo-edit-meta" class="memo-edit-meta" hidden>
+          <label class="visually-hidden" for="memo-tag-input">메모 태그 수정</label>
+          <select id="memo-tag-input" class="memo-tag-input">
+            <option value="daily">Daily</option>
+            <option value="work">Work</option>
+            <option value="others">Others</option>
+          </select>
+          <label class="visually-hidden" for="memo-date-input">메모 날짜 수정</label>
+          <input id="memo-date-input" class="memo-date-input" type="date" />
+        </div>
+        <p id="memo-detail-body"></p>
+        <label class="visually-hidden" for="memo-content-input">메모 내용 수정</label>
+        <textarea id="memo-content-input" class="memo-content-input" hidden></textarea>
+        <footer class="memo-detail-actions">
+          <button type="button" id="edit-button" aria-label="메모 수정">
+            <img src="./assets/icons/edit.svg" width="27" height="27" alt="" />
+          </button>
+          <button type="button" id="delete-button" aria-label="메모 삭제">
+            <img src="./assets/icons/trash.svg" width="24" height="24" alt="" />
+          </button>
+        </footer>
+      </article>
+    </dialog>
+  </body>
+</html>

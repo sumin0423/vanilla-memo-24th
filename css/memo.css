@@ -1,0 +1,371 @@
+.memo-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.has-memos main {
+  margin-top: 52px;
+}
+
+.memo-board {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.memo-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.memo-card {
+  flex: 0 0 calc((100% - 60px) / 4);
+  min-width: 0;
+  aspect-ratio: 1;
+  padding: 20px;
+  border-radius: 20px;
+  color: var(--color-surface);
+}
+
+.memo-card--daily {
+  background: var(--color-daily);
+}
+
+.memo-card--work {
+  background: var(--color-work);
+}
+
+.memo-card--others {
+  background: var(--color-others);
+}
+
+.memo-card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  height: 100%;
+  min-height: 0;
+}
+
+.memo-card-header,
+.memo-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.memo-card-title {
+  margin: 0;
+  overflow: hidden;
+  font-size: 20px;
+  font-weight: 700;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.pin-button {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  color: var(--color-background);
+  background: url("../assets/icons/star.svg") center / 23px 22px no-repeat;
+}
+
+.pin-button.is-pinned {
+  background-image: url("../assets/icons/starPinned.svg");
+}
+
+.memo-card-preview {
+  flex: 1;
+  min-height: 0;
+  margin: 0;
+  overflow: hidden;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.memo-card-footer {
+  font-size: 14px;
+}
+
+button:not(:disabled) {
+  cursor: pointer;
+}
+
+.memo-card {
+  position: relative;
+  cursor: pointer;
+}
+
+.memo-open-button {
+  display: block;
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-align: left;
+  font-weight: inherit;
+}
+
+.memo-card-preview {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 7;
+}
+
+#tag-select[data-tag="daily"] {
+  color: var(--color-daily);
+}
+
+#tag-select[data-tag="work"] {
+  color: var(--color-work);
+}
+
+#tag-select[data-tag="others"] {
+  color: #657c94;
+}
+
+#no-results {
+  gap: 12px;
+  color: var(--color-ink);
+  border-color: var(--color-ink);
+}
+
+#no-results .empty-icon {
+  width: 96px;
+  height: 96px;
+  margin-bottom: 12px;
+  background: var(--color-ink);
+}
+
+#no-results p {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+#no-results p:last-child {
+  color: #657c94;
+}
+
+#memo-dialog {
+  width: 560px;
+  max-width: calc(100vw - 48px);
+  max-height: calc(100vh - 48px);
+  padding: 40px 44px;
+  border: 0;
+  border-radius: 24px;
+  color: var(--color-surface);
+  box-shadow: 0 4px 6px #001b5433;
+}
+
+#memo-dialog::backdrop {
+  background: #001b5480;
+}
+
+#memo-content {
+  display: flex;
+  flex-direction: column;
+  min-height: 480px;
+}
+
+.memo-detail-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+#memo-detail-heading {
+  margin: 0;
+  overflow-wrap: anywhere;
+  font-size: 30px;
+  line-height: 1.4;
+}
+
+.dialog-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.memo-detail-meta {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-top: 28px;
+  margin-bottom: 32px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+#memo-detail-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  padding: 4px 20px 4px 12px;
+  border-radius: 24px;
+  background: var(--color-background);
+  color: var(--color-ink);
+}
+
+#memo-detail-date {
+  display: flex;
+  align-items: center;
+  min-height: 52px;
+  padding-left: 24px;
+  background: url("../assets/icons/divider.svg") left center / 3px 52px no-repeat;
+}
+
+#memo-detail-body {
+  margin: 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+#memo-detail-heading:focus {
+  outline: none;
+}
+
+#memo-detail-tag::before {
+  content: "";
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: center / contain no-repeat;
+}
+
+.memo-card--daily #memo-detail-tag {
+  color: #528bff;
+}
+
+.memo-card--work #memo-detail-tag {
+  color: var(--color-work);
+}
+
+.memo-card--others #memo-detail-tag {
+  color: #657c94;
+}
+
+.memo-detail-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: auto;
+  padding-top: 32px;
+}
+
+.memo-detail-actions button {
+  width: 28px;
+  height: 28px;
+}
+
+
+.tag-control[data-tag="daily"]::after,
+.memo-card--daily #memo-detail-tag::before {
+  background-image: url("../assets/icons/daily.svg");
+}
+
+#tag-select[data-tag="daily"],
+.memo-card--daily #memo-detail-tag {
+  color: #5590ff;
+}
+
+.tag-control[data-tag="work"]::after,
+.memo-card--work #memo-detail-tag::before {
+  background-image: url("../assets/icons/work.svg");
+}
+
+#tag-select[data-tag="work"],
+.memo-card--work #memo-detail-tag {
+  color: #0037a3;
+}
+
+.tag-control[data-tag="others"]::after,
+.memo-card--others #memo-detail-tag::before {
+  background-image: url("../assets/icons/others.svg");
+}
+
+#tag-select[data-tag="others"],
+.memo-card--others #memo-detail-tag {
+  color: #677b93;
+}
+
+.tag-control[data-tag="daily"]::after,
+.tag-control[data-tag="work"]::after,
+.tag-control[data-tag="others"]::after {
+  left: 12px;
+  right: auto;
+  width: 20px;
+  height: 20px;
+}
+
+#tag-select[data-tag="daily"],
+#tag-select[data-tag="work"],
+#tag-select[data-tag="others"] {
+  padding: 0 8px 0 44px;
+}
+
+.memo-detail-actions button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.memo-title-input {
+  width: 100%;
+  min-width: 0;
+  padding: 0 0 4px;
+  border: 0;
+  border-bottom: 2px solid var(--color-ink);
+  background: transparent;
+  font-size: 30px;
+  line-height: 1.4;
+  font-weight: 700;
+}
+
+.memo-edit-meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 28px;
+  margin-bottom: 32px;
+}
+
+.memo-tag-input,
+.memo-date-input {
+  padding: 8px 12px;
+  border: 1px solid var(--color-muted);
+  border-radius: 12px;
+  background: var(--color-surface);
+  color: var(--color-ink);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.memo-content-input {
+  width: 100%;
+  min-height: 160px;
+  padding: 12px;
+  border: 1px solid var(--color-muted);
+  border-radius: 12px;
+  background: var(--color-surface);
+  color: var(--color-ink);
+  font-size: 18px;
+  line-height: 1.6;
+  font-family: inherit;
+  resize: vertical;
+}
