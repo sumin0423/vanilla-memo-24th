@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/memo.css" />
     <script src="./js/mockData.js" defer></script>
+    <script src="./js/storage.js" defer></script>
     <script src="./js/memo.js" defer></script>
     <script src="./js/modal.js" defer></script>
     <script src="./js/main.js" defer></script>
@@ -67,22 +68,36 @@
       <article id="memo-content">
         <header class="memo-detail-header">
           <h2 id="memo-detail-heading" tabindex="-1" autofocus>메모 제목</h2>
+          <label class="visually-hidden" for="memo-title-input">메모 제목 수정</label>
+          <input id="memo-title-input" class="memo-title-input" type="text" hidden />
           <form method="dialog">
             <button type="submit" class="dialog-close" aria-label="닫기">
               <img src="./assets/icons/close.svg" width="32" height="32" alt="" />
             </button>
           </form>
         </header>
-        <div class="memo-detail-meta">
+        <div id="memo-detail-view" class="memo-detail-meta">
           <span id="memo-detail-tag"></span>
           <time id="memo-detail-date"></time>
         </div>
+        <div id="memo-edit-meta" class="memo-edit-meta" hidden>
+          <label class="visually-hidden" for="memo-tag-input">메모 태그 수정</label>
+          <select id="memo-tag-input" class="memo-tag-input">
+            <option value="daily">Daily</option>
+            <option value="work">Work</option>
+            <option value="others">Others</option>
+          </select>
+          <label class="visually-hidden" for="memo-date-input">메모 날짜 수정</label>
+          <input id="memo-date-input" class="memo-date-input" type="date" />
+        </div>
         <p id="memo-detail-body"></p>
+        <label class="visually-hidden" for="memo-content-input">메모 내용 수정</label>
+        <textarea id="memo-content-input" class="memo-content-input" hidden></textarea>
         <footer class="memo-detail-actions">
-          <button type="button" aria-label="메모 수정" disabled>
+          <button type="button" id="edit-button" aria-label="메모 수정">
             <img src="./assets/icons/edit.svg" width="27" height="27" alt="" />
           </button>
-          <button type="button" aria-label="메모 삭제" disabled>
+          <button type="button" id="delete-button" aria-label="메모 삭제">
             <img src="./assets/icons/trash.svg" width="24" height="24" alt="" />
           </button>
         </footer>

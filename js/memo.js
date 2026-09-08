@@ -1,6 +1,6 @@
 'use strict';
 
-let memos = sampleMemos.map((memo) => ({ ...memo }));
+let memos = (loadStoredMemos() ?? sampleMemos).map((memo) => ({ ...memo }));
 let searchQuery = '';
 let selectedTag = 'all';
 let lastOpenedMemoId = null;
@@ -26,7 +26,19 @@ const memoElements = {
   detailTag: document.querySelector('#memo-detail-tag'),
   detailDate: document.querySelector('#memo-detail-date'),
   detailBody: document.querySelector('#memo-detail-body'),
+  detailView: document.querySelector('#memo-detail-view'),
+  titleInput: document.querySelector('#memo-title-input'),
+  editMeta: document.querySelector('#memo-edit-meta'),
+  tagInput: document.querySelector('#memo-tag-input'),
+  dateInput: document.querySelector('#memo-date-input'),
+  contentInput: document.querySelector('#memo-content-input'),
+  editButton: document.querySelector('#edit-button'),
+  deleteButton: document.querySelector('#delete-button'),
 };
+
+function persistMemos() {
+  saveMemosToStorage(memos);
+}
 
 function createMemoCard(memo) {
   const { id, title, content, tag, date, isPinned } = memo;
@@ -142,6 +154,7 @@ function togglePin(memoId) {
     }
     return memo;
   });
+  persistMemos();
   renderMemos();
 }
 
